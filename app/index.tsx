@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Redirect, router } from 'expo-router';
 
-export default function HomePage() {
+export default function Welcome() {
 	return (
 		<SafeAreaView className="h-full bg-slate-800">
 			<ScrollView contentContainerStyle={{ height: '100%' }}>
@@ -46,10 +46,7 @@ export default function HomePage() {
 					/>
 				</View>
 			</ScrollView>
-			<StatusBar
-				backgroundColor="#161622"
-				style="light"
-			/>
+			<StatusBar backgroundColor="#161622" style="light" />
 		</SafeAreaView>
 	);
 }

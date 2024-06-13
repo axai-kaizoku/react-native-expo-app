@@ -12,3 +12,23 @@ export type CustomButtonProps = {
 	textStyles?: string;
 	isLoading?: boolean;
 };
+
+export type FormFieldProps = {
+	title: string;
+	value: any;
+	handleChangeText: (e: any) => void;
+	otherStyles: string;
+	keyboardType?: string;
+	placeholder: string;
+};
+
+export type SignInForm = {
+	email: string;
+	password: string;
+};
+
+export type SignUpForm = {
+	username: string;
+	email: string;
+	password: string;
+};
