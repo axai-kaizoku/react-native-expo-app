@@ -32,3 +32,17 @@ export type SignUpForm = {
 	email: string;
 	password: string;
 };
+
+export type User = {
+	$collectionId: string;
+	$createdAt: string;
+	$databaseId: string;
+	$id: string;
+	$permissions: any[];
+	$tenant: string;
+	$updatedAt: string;
+	accountId: string;
+	avatar: string;
+	email: string;
+	username: string;
+};

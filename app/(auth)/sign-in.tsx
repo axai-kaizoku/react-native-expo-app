@@ -1,8 +1,9 @@
 import CustomButton from '@/components/CustomButton';
 import FormField from '@/components/FormField';
 import { images } from '@/constants';
+import { signIn } from '@/lib/appwrite';
 import { SignInForm } from '@/types';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { useState } from 'react';
 import {
 	View,
@@ -10,6 +11,7 @@ import {
 	ScrollView,
 	Image,
 	ImageSourcePropType,
+	Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,7 +22,22 @@ export default function SignIn() {
 	});
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-	const submit = () => {};
+	const submit = async () => {
+		if (form.email.trim() === '' || form.password === '') {
+			Alert.alert('Error', 'Please fill all the fields');
+			setIsSubmitting(true);
+		}
+		try {
+			const result = await signIn(form.email, form.password);
+
+			// set it to global state
+			router.replace('/home');
+		} catch (error: any) {
+			Alert.alert('Error', error.message);
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 	return (
 		<SafeAreaView className="h-full bg-slate-900">
 			<ScrollView>

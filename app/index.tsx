@@ -10,8 +10,13 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Redirect, router } from 'expo-router';
+import { useGlobalContext } from '@/context/globalProvider';
 
 export default function Welcome() {
+	const { isLoading, isLoggedIn } = useGlobalContext();
+
+	if (!isLoading && !isLoggedIn) return <Redirect href="/home" />;
+
 	return (
 		<SafeAreaView className="h-full bg-slate-800">
 			<ScrollView contentContainerStyle={{ height: '100%' }}>

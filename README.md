@@ -8,7 +8,7 @@
 - [x] Onboarding screen ()
 - [x] Sign In screen (auth)
 - [x] Sign Up screen (auth)
-- [ ] Backend logic (w/appwrite)
+- [x] Backend logic - auth (w/appwrite)
 - [ ] Home Screen
 - [ ] Trending Videos section
 - [ ] Search Screen
