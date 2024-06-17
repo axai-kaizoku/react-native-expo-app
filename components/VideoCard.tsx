@@ -1,5 +1,6 @@
 import { icons } from '@/constants';
-import { Video } from '@/types';
+import { Video as Vid } from '@/types';
+import { ResizeMode, Video } from 'expo-av';
 import { useState } from 'react';
 import {
 	View,
@@ -10,7 +11,7 @@ import {
 } from 'react-native';
 
 interface VideoCard {
-	videoData: Video;
+	videoData: Vid;
 }
 
 export default function ({ videoData }: VideoCard) {
@@ -20,7 +21,7 @@ export default function ({ videoData }: VideoCard) {
 		thumbnail,
 		creators: { username, avatar },
 	} = videoData;
-	const [play, setPlay] = useState<boolean>(false);
+	const [play, setPlay] = useState(false);
 	return (
 		<View className="flex-col items-center px-4 mb-14">
 			<View className="flex-row items-start gap-3">
@@ -54,7 +55,13 @@ export default function ({ videoData }: VideoCard) {
 				</View>
 			</View>
 			{play ? (
-				<Text className="text-white">Playing</Text>
+				<Video
+					source={{ uri: video }}
+					className="w-full mt-2 h-60 rounded-xl"
+					resizeMode={ResizeMode.CONTAIN}
+					useNativeControls
+					shouldPlay
+				/>
 			) : (
 				<TouchableOpacity
 					activeOpacity={0.7}

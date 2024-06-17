@@ -106,3 +106,17 @@ export const getAllPosts = async (): Promise<Video[]> => {
 		throw new Error(error);
 	}
 };
+
+export const getLatestPosts = async (): Promise<Video[]> => {
+	try {
+		const posts = await databases.listDocuments(
+			config.databaseId,
+			config.videoCollectionId,
+			[Query.orderDesc('$createdAt'), Query.limit(5)],
+		);
+		return posts.documents as Video[];
+	} catch (error: any) {
+		console.log(error);
+		throw new Error(error);
+	}
+};

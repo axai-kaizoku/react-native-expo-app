@@ -3,7 +3,7 @@ import SearchInput from '@/components/SearchInput';
 import Trending from '@/components/Trending';
 import VideoCard from '@/components/VideoCard';
 import { images } from '@/constants';
-import { getAllPosts } from '@/lib/appwrite';
+import { getAllPosts, getLatestPosts } from '@/lib/appwrite';
 import useAppwrite from '@/lib/useAppwrite';
 import { useState } from 'react';
 import {
@@ -17,7 +17,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Home() {
-	const { data: posts, isLoading, refetch } = useAppwrite(getAllPosts);
+	const { data: posts, refetch } = useAppwrite(getAllPosts);
+	const { data: latestPosts } = useAppwrite(getLatestPosts);
 
 	const [refreshing, setRefreshing] = useState<boolean>(false);
 
@@ -55,7 +56,7 @@ export default function Home() {
 							<Text className="mb-3 text-lg font-normal text-gray-100">
 								Latest Videos
 							</Text>
-							<Trending posts={[{ id: '1' }, { id: '2' }, { id: '3' }] ?? []} />
+							<Trending posts={latestPosts ?? []} />
 						</View>
 					</View>
 				)}
