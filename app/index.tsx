@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Redirect, router } from 'expo-router';
-import { useGlobalContext } from '@/context/globalProvider';
+import { useGlobalContext } from '@/context/GlobalProvider';
 
 export default function Welcome() {
 	const { isLoading, isLoggedIn } = useGlobalContext();
 
-	if (!isLoading && !isLoggedIn) return <Redirect href="/home" />;
+	if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
 
 	return (
 		<SafeAreaView className="h-full bg-slate-800">

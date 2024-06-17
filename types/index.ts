@@ -46,3 +46,36 @@ export type User = {
 	email: string;
 	username: string;
 };
+
+export type Video = {
+	$collectionId: string;
+	$createdAt: string;
+	$databaseId: string;
+	$id: string;
+	$permissions: any[];
+	$tenant: string;
+	$updatedAt: string;
+	creators: {
+		username: string;
+		avatar: string;
+	};
+	prompt: string;
+	thumbnail: string;
+	title: string;
+	video: string;
+};
+
+export type SearchInputProps = {
+	value?: any;
+	handleChangeText?: (e: any) => void;
+	otherStyles?: string;
+	keyboardType?: string;
+	placeholder?: string;
+};
+
+export type EmptyStateProps = {
+	title: string;
+	subtitle: string;
+};
+
+export type FetchFunction<T> = () => Promise<T[]>;

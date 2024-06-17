@@ -1,4 +1,4 @@
-import { User } from '@/types';
+import { User, Video } from '@/types';
 import {
 	Account,
 	Avatars,
@@ -74,7 +74,7 @@ export const signIn = async (email: string, password: string) => {
 	}
 };
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = async (): Promise<User | undefined> => {
 	try {
 		const currentAccount = await account.get();
 
@@ -88,9 +88,21 @@ export const getCurrentUser = async () => {
 
 		if (!currentUser) throw Error;
 
-		console.log(currentUser.documents[0]);
-		return currentUser.documents[0];
+		return currentUser.documents[0] as User;
 	} catch (error: any) {
 		console.log(error);
+	}
+};
+
+export const getAllPosts = async (): Promise<Video[]> => {
+	try {
+		const posts = await databases.listDocuments(
+			config.databaseId,
+			config.videoCollectionId,
+		);
+		return posts.documents as Video[];
+	} catch (error: any) {
+		console.log(error);
+		throw new Error(error);
 	}
 };
