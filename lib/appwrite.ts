@@ -120,3 +120,17 @@ export const getLatestPosts = async (): Promise<Video[]> => {
 		throw new Error(error);
 	}
 };
+
+export const getSearchedPosts = async (query: string): Promise<Video[]> => {
+	try {
+		const posts = await databases.listDocuments(
+			config.databaseId,
+			config.videoCollectionId,
+			[Query.search('title', query)],
+		);
+		return posts.documents as Video[];
+	} catch (error: any) {
+		console.log(error);
+		throw new Error(error);
+	}
+};

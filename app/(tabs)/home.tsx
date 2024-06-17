@@ -51,7 +51,7 @@ export default function Home() {
 								/>
 							</View>
 						</View>
-						<SearchInput placeholder="Search here" />
+						<SearchInput />
 						<View className="flex-1 w-full pt-5 pb-8">
 							<Text className="mb-3 text-lg font-normal text-gray-100">
 								Latest Videos

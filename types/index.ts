@@ -65,14 +65,6 @@ export type Video = {
 	video: string;
 };
 
-export type SearchInputProps = {
-	value?: any;
-	handleChangeText?: (e: any) => void;
-	otherStyles?: string;
-	keyboardType?: string;
-	placeholder?: string;
-};
-
 export type EmptyStateProps = {
 	title: string;
 	subtitle: string;
