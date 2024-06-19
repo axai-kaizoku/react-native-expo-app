@@ -134,3 +134,27 @@ export const getSearchedPosts = async (query: string): Promise<Video[]> => {
 		throw new Error(error);
 	}
 };
+
+export const getUserPosts = async (userId: string): Promise<Video[]> => {
+	try {
+		const posts = await databases.listDocuments(
+			config.databaseId,
+			config.videoCollectionId,
+			[Query.equal('creators', userId)],
+		);
+		return posts.documents as Video[];
+	} catch (error: any) {
+		console.log(error);
+		throw new Error(error);
+	}
+};
+
+export const signOut = async () => {
+	try {
+		const session = await account.deleteSession('current');
+
+		return session;
+	} catch (error: any) {
+		throw new Error(error);
+	}
+};

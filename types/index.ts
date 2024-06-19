@@ -71,3 +71,10 @@ export type EmptyStateProps = {
 };
 
 export type FetchFunction<T> = () => Promise<T[]>;
+
+export type InfoBoxTypes = {
+	title: number | string;
+	subTitle?: string;
+	containerStyles?: string;
+	textStyles?: string;
+};

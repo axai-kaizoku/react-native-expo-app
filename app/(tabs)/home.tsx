@@ -3,6 +3,7 @@ import SearchInput from '@/components/SearchInput';
 import Trending from '@/components/Trending';
 import VideoCard from '@/components/VideoCard';
 import { images } from '@/constants';
+import { useGlobalContext } from '@/context/GlobalProvider';
 import { getAllPosts, getLatestPosts } from '@/lib/appwrite';
 import useAppwrite from '@/lib/useAppwrite';
 import { useState } from 'react';
@@ -19,6 +20,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function Home() {
 	const { data: posts, refetch } = useAppwrite(getAllPosts);
 	const { data: latestPosts } = useAppwrite(getLatestPosts);
+	const { user } = useGlobalContext();
 
 	const [refreshing, setRefreshing] = useState<boolean>(false);
 
@@ -39,9 +41,11 @@ export default function Home() {
 						<View className="flex-row items-start justify-between mb-6">
 							<View>
 								<Text className="text-sm font-medium text-gray-100">
-									Welcome Back
+									Welcome Back,
 								</Text>
-								<Text className="text-2xl font-semibold text-white">axai</Text>
+								<Text className="text-2xl font-semibold text-white">
+									{user?.username || ''}
+								</Text>
 							</View>
 							<View className="mt-1.5">
 								<Image
